@@ -13,5 +13,8 @@ https://some.lambda.site/blahblah?token=1234567890&include=ca,captcha,cdn,ntp,pu
 
 https://some.lambda.site/blahblah?token=1234567890&include=all
 # Returns allow list containing all tracked domains
+
+https://some.lambda.site/blahblah?token=1234567890&includegroup=streaming&include=ca,cdn,ntp
+# Returns allow list containing all streaming domains, CAs (CRLs and OCSP), CDNs, and NTP
 ```
 
