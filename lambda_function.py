@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 # Temporarily defining statically
-WHITELISTS = {
+ALLOWLISTS = {
     'apple': 'Apple Services',
     'cas': 'Certificate Authorities - CRL and OCSP',
     'captcha': 'CAPTCHA Services',
@@ -92,10 +92,10 @@ def lambda_handler(event, context):
     queryStringIncludes = ""
     queryStringDrops = ""
 
-    # include=all will pull full whitelist contents
+    # include=all will pull full allowlist contents
     if event["queryStringParameters"]["include"].lower().split(",") == ["all"]:
-        for whitelist in WHITELISTS:
-            queryStringIncludes += f"""#\t{whitelist} - {WHITELISTS[whitelist]}\n"""
+        for allowlist in ALLOWLISTS:
+            queryStringIncludes += f"""#\t{allowlist} - {ALLOWLISTS[allowlist]}\n"""
 
         return {
             'statusCode': 200,
@@ -109,8 +109,8 @@ def lambda_handler(event, context):
 
     # Otherwise, we'll include whatever they list
     for queryStringInclude in event["queryStringParameters"]["include"].lower().split(","):
-        if queryStringInclude in WHITELISTS:
-            queryStringIncludes += f"""#\t{queryStringInclude} - {WHITELISTS[queryStringInclude]}\n"""
+        if queryStringInclude in ALLOWLISTS:
+            queryStringIncludes += f"""#\t{queryStringInclude} - {ALLOWLISTS[queryStringInclude]}\n"""
         else:
             queryStringDrops += f"""#\t{queryStringInclude}\n"""
 
