@@ -1,2 +1,2 @@
-### allowist
+## allowist
 Allowist for allow lists
